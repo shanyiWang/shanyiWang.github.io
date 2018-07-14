@@ -87,13 +87,13 @@
 <meta property="og:site_name" content="Kind Net">
 <meta property="og:description" content="感知机感知机(Perceptron)算法是一种很好的二分类在线算法，它要求是线性可分的模型，感知机对应于在输入的空间中将实例划分成正负样本，分离它们的是分离超平面，即判别的模型。感知机被视为一种最简单形式的前馈式人工神经网络，是一种二元线性分类器。 函数定义z = w_1*x_1 + w_2+x_2  {\cdots} w_n*x_na = sigmod(z)损失函数(Loss Function)">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2018/07/08/deeplearning-perception/deepLearning-perception/1.png">
-<meta property="og:image" content="http://yoursite.com/2018/07/08/deeplearning-perception/deepLearning-perception/2.png">
-<meta property="og:updated_time" content="2018-07-08T08:29:43.833Z">
+<meta property="og:image" content="http://yoursite.com/2018/07/08/deeplearning-perception/1.png">
+<meta property="og:image" content="http://yoursite.com/2018/07/08/deeplearning-perception/2.png">
+<meta property="og:updated_time" content="2018-07-08T08:32:49.059Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深度学习-感知机">
 <meta name="twitter:description" content="感知机感知机(Perceptron)算法是一种很好的二分类在线算法，它要求是线性可分的模型，感知机对应于在输入的空间中将实例划分成正负样本，分离它们的是分离超平面，即判别的模型。感知机被视为一种最简单形式的前馈式人工神经网络，是一种二元线性分类器。 函数定义z = w_1*x_1 + w_2+x_2  {\cdots} w_n*x_na = sigmod(z)损失函数(Loss Function)">
-<meta name="twitter:image" content="http://yoursite.com/2018/07/08/deeplearning-perception/deepLearning-perception/1.png">
+<meta name="twitter:image" content="http://yoursite.com/2018/07/08/deeplearning-perception/1.png">
 
 
 
@@ -316,8 +316,8 @@
         <h3 id="感知机"><a href="#感知机" class="headerlink" title="感知机"></a>感知机</h3><p>感知机(Perceptron)算法是一种很好的二分类在线算法，它要求是线性可分的模型，感知机对应于在输入的空间中将实例划分成正负样本，分离它们的是分离超平面，即判别的模型。感知机被视为一种最简单形式的前馈式人工神经网络，是一种二元线性分类器。</p>
 <h3 id="函数定义"><a href="#函数定义" class="headerlink" title="函数定义"></a>函数定义</h3><script type="math/tex; mode=display">z = w_1*x_1 + w_2+x_2  {\cdots} w_n*x_n</script><script type="math/tex; mode=display">a = sigmod(z)</script><h3 id="损失函数-Loss-Function-和代价函数-Cost-Function"><a href="#损失函数-Loss-Function-和代价函数-Cost-Function" class="headerlink" title="损失函数(Loss Function)和代价函数(Cost Function)"></a>损失函数(Loss Function)和代价函数(Cost Function)</h3><p>首先明确下损失函数概念和代价函数，感知机是通过损失函数计算偏差。<br>损失函数：Loss(error) function  对于单个样本预计值与真实值的偏差</p>
 <script type="math/tex; mode=display">L(a,y) = -(yloga + (1-y)log(1-a))</script><p>代价函数：Cost function   对于所有样本loss的平均值</p>
-<script type="math/tex; mode=display">J(w,b) = \frac{1}{m} * \sum_{i=1}^m -(yloga + (1-y)log(1-a))</script><h3 id="逻辑回归公式推导"><a href="#逻辑回归公式推导" class="headerlink" title="逻辑回归公式推导"></a>逻辑回归公式推导</h3><p><img src="/2018/07/08/deeplearning-perception/deepLearning-perception/1.png" alt="a1"> </p>
-<h3 id="逻辑回归公式向量化"><a href="#逻辑回归公式向量化" class="headerlink" title="逻辑回归公式向量化"></a>逻辑回归公式向量化</h3><p><img src="/2018/07/08/deeplearning-perception/deepLearning-perception/2.png" alt="a2"> </p>
+<script type="math/tex; mode=display">J(w,b) = \frac{1}{m} * \sum_{i=1}^m -(yloga + (1-y)log(1-a))</script><h3 id="逻辑回归公式推导"><a href="#逻辑回归公式推导" class="headerlink" title="逻辑回归公式推导"></a>逻辑回归公式推导</h3><p><img src="/2018/07/08/deeplearning-perception/1.png" alt="a1"> </p>
+<h3 id="逻辑回归公式向量化"><a href="#逻辑回归公式向量化" class="headerlink" title="逻辑回归公式向量化"></a>逻辑回归公式向量化</h3><p><img src="/2018/07/08/deeplearning-perception/2.png" alt="a2"> </p>
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">def propagate(w, b, X, Y):</span><br><span class="line">    m = X.shape[1]  </span><br><span class="line">    A = sigmoid(np.dot(w.T, X) + b)                                    </span><br><span class="line">    cost = (- 1 / m) * np.sum(Y * np.log(A) + (1 - Y) * (np.log(1 - A)))                                   </span><br><span class="line">    dw = (1 / m) * np.dot(X, (A - Y).T)</span><br><span class="line">    db = (1 / m) * np.sum(A - Y)</span><br><span class="line">    cost = np.squeeze(cost)</span><br></pre></td></tr></table></figure>
 
       
@@ -345,6 +345,22 @@
       
       
 
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/14/deeplearning-cnn/" rel="prev" title="神经网络-卷积神经网络">
+                神经网络-卷积神经网络 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
       
 
       
@@ -418,7 +434,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -431,7 +447,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
